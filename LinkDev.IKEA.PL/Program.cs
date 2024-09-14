@@ -6,11 +6,15 @@ namespace LinkDev.IKEA.PL
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            #region Configure Services
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+            #endregion
 
+            #region Configure Kestrle MiddleWares
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
@@ -28,7 +32,8 @@ namespace LinkDev.IKEA.PL
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}"); 
+            #endregion
 
             app.Run();
         }
