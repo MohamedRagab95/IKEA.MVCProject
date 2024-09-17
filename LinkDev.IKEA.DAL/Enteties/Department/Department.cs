@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkDev.IKEA.DAL.Models
+namespace LinkDev.IKEA.DAL.Enteties.Department
 {
-    internal class Department : ModelBase
+    public class Department : ModelBase
     {
         public string Code { get; set; }
         public string Name { get; set; }

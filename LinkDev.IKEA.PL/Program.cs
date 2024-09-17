@@ -1,3 +1,6 @@
+using LinkDev.IKEA.DAL.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace LinkDev.IKEA.PL
 {
     public class Program
@@ -12,9 +15,15 @@ namespace LinkDev.IKEA.PL
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+
+            builder.Services.AddDbContext<ApplicationDbContext>
+                (
+                  options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+                );
             #endregion
 
             #region Configure Kestrle MiddleWares
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
