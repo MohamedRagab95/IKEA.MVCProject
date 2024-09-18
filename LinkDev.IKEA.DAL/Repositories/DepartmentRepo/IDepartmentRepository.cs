@@ -11,6 +11,7 @@ namespace LinkDev.IKEA.DAL.Repositories.DepartmentRepo
     {
         IEnumerable<Department> GetAll(bool WithAsNoTracking = true);
 
+        IQueryable<Department> GetAllDepartmentIQuarable();
         Department? GetById(int id);
 
         int Update(Department entity);

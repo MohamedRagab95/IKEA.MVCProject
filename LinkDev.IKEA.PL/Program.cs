@@ -1,4 +1,6 @@
 using LinkDev.IKEA.DAL.Data;
+using LinkDev.IKEA.DAL.Enteties.Department;
+using LinkDev.IKEA.DAL.Repositories.DepartmentRepo;
 using Microsoft.EntityFrameworkCore;
 
 namespace LinkDev.IKEA.PL
@@ -20,6 +22,9 @@ namespace LinkDev.IKEA.PL
                 (
                   options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
                 );
+
+                builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
             #endregion
 
             #region Configure Kestrle MiddleWares

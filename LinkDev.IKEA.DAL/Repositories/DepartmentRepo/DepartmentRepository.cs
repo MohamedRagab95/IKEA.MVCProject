@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace LinkDev.IKEA.DAL.Repositories.DepartmentRepo
 {
-    internal class DepartmentRepository : IDepartmentRepository
+    public class DepartmentRepository : IDepartmentRepository
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
@@ -54,6 +54,10 @@ namespace LinkDev.IKEA.DAL.Repositories.DepartmentRepo
             return _applicationDbContext.SaveChanges();
         }
 
+        public IQueryable<Department> GetAllDepartmentIQuarable()
+        {
+            return _applicationDbContext.Departments;
+        }
     }
 
 }
