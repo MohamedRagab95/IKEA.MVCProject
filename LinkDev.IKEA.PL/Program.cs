@@ -1,3 +1,4 @@
+using LinkDev.IKEA.BLL.Services.DepartmentServices;
 using LinkDev.IKEA.DAL.Data;
 using LinkDev.IKEA.DAL.Enteties.Department;
 using LinkDev.IKEA.DAL.Repositories.DepartmentRepo;
@@ -24,6 +25,7 @@ namespace LinkDev.IKEA.PL
                 );
 
                 builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+                 builder.Services.AddScoped<IDepartmentServices, DepartmentService>();
 
             #endregion
 

@@ -1,5 +1,5 @@
 ﻿using LinkDev.IKEA.DAL.Enteties.Department;
-using LinkDev.IKEA.DAL.Models;
+using LinkDev.IKEA.DAL.Enteties;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
