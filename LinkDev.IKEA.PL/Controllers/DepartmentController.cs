@@ -14,9 +14,9 @@ namespace LinkDev.IKEA.PL.Controllers
         public DepartmentController(
             IDepartmentServices departmentservices,
             ILogger<DepartmentController> logger,
-            IWebHostEnvironment environment) 
+            IWebHostEnvironment environment)
         {
-           _departmentservices = departmentservices;
+            _departmentservices = departmentservices;
             _logger = logger;
             _environment = environment;
         }
@@ -31,19 +31,19 @@ namespace LinkDev.IKEA.PL.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-           
+
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(CreatedDepartmentDto createdDepartmentDto)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(createdDepartmentDto);
             }
 
-            var massage =string.Empty;
+            var massage = string.Empty;
 
             try
             {
@@ -59,25 +59,46 @@ namespace LinkDev.IKEA.PL.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex,ex.Message);
+                _logger.LogError(ex, ex.Message);
 
                 if (_environment.IsDevelopment())
                 {
                     massage = ex.Message;
 
-                    return View (createdDepartmentDto);
+                    return View(createdDepartmentDto);
                 }
                 else
                 {
-                    
+
                     massage = "Department is not created";
                     return View("Error", massage);
-                
+
                 }
 
 
             }
-          
+
+        }
+
+
+
+        [HttpGet]
+        
+        public IActionResult Details(int? id)
+        {
+
+
+            if (id is null)
+
+                return BadRequest();
+
+            var department = _departmentservices.GetDepartmentById(id.Value);
+
+            if (department is null)
+
+                return NotFound();
+
+            return View(department);
         }
     }
 }
