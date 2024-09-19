@@ -1,3 +1,9 @@
+using LinkDev.IKEA.BLL.Services.DepartmentServices;
+using LinkDev.IKEA.DAL.Data;
+using LinkDev.IKEA.DAL.Enteties.Department;
+using LinkDev.IKEA.DAL.Repositories.DepartmentRepo;
+using Microsoft.EntityFrameworkCore;
+
 namespace LinkDev.IKEA.PL
 {
     public class Program
@@ -11,10 +17,21 @@ namespace LinkDev.IKEA.PL
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+
+                builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+                 builder.Services.AddScoped<IDepartmentServices, DepartmentService>();
+
+            builder.Services.AddDbContext<ApplicationDbContext>
+                (
+                  options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
+                );
+
             var app = builder.Build();
+
             #endregion
 
             #region Configure Kestrle MiddleWares
+
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
