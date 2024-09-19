@@ -63,12 +63,12 @@ namespace LinkDev.IKEA.BLL.Services.DepartmentServices
         public int CreateDepartment(CreatedDepartmentDto departmentDto)
         {
              var department = new Department()
-                            {
-                                Name = departmentDto.Name,
-                                Code = departmentDto.Code,
-                                Description = departmentDto.Description,
-                                ModifiedOn = DateTime.UtcNow,
-                            };
+             {
+                 Name = departmentDto.Name,
+                 Code = departmentDto.Code,
+                 Description = departmentDto.Description,
+                 ModifiedOn = DateTime.UtcNow,
+             };
 
             return _departmentRepository.Add(department);
         }
